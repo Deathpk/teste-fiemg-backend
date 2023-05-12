@@ -1,11 +1,11 @@
 import { CronJob } from "cron";
-import FetchAndSaveNewUniversitiesService from "../services/FetchAndSaveNewUniversitiesService";
+import FetchAndSaveNewUniversitiesService from "../services/fetchAndSaveNewUniversitiesService";
 
 export default class UpdateUniversityListCronJob
 {
     public execute(): void {
         const service = new FetchAndSaveNewUniversitiesService();
-        const cron = new CronJob("* * * * *", async () => {
+        const cron = new CronJob("0 0 * * *", async () => {
                 console.log("Atualizando lista de universidades...");
                 await service.fetchUniversities();
             },

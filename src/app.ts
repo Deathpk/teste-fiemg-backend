@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import 'express-async-errors';
 import { router } from "./routes";
-import UpdateUniversityListCronJob from "./cronjobs/UpdateUniversityListCronJob";
+import UpdateUniversityListCronJob from "./cronjobs/updateUniversityListCronJob";
 
 const app = express();
 app.use(express.json());

@@ -1,4 +1,4 @@
-import UniversityApi, { SearchRequestResponse, SearchResult } from "../api/UniversityApi";
+import UniversityApi, { SearchRequestResponse, SearchResult } from "../api/universityApi";
 import prismaClient from "../prisma";
 
 export default class FetchAndSaveNewUniversitiesService

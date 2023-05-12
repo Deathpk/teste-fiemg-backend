@@ -14,7 +14,7 @@ export type SearchResult = {
     domains: string[]
     country: string
     alpha_two_code: string,
-    state_province: string|null
+    state_province?: string
     web_pages: string[]
     name: string
 }

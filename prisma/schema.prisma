@@ -23,3 +23,16 @@ model University {
 
   @@map("universities")
 }
+
+model User {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  must_change_password Boolean @default(false)
+  password_reset_token String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("users")
+}
