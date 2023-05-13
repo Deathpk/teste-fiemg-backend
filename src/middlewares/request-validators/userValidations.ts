@@ -49,3 +49,33 @@ export async function createUserValidate(request: Request, response: Response, n
 
     return next();
 }
+
+export async function changePasswordValidate(request: Request, response: Response, next: NextFunction) {
+    const validations = [
+        body("currentPassword")
+        .escape()
+        .notEmpty()
+        .withMessage("O campo senha atual é obrigatório."),
+
+        body("newPassword")
+        .escape()
+        .notEmpty()
+        .withMessage("O campo nova senha é obrigatório.")
+        .not().equals(request.body.currentPassword)
+        .withMessage('A nova senha deve ser diferente da atual.')
+    ]
+
+    for (let validation of validations) {
+        await validation.run(request);
+    }
+
+    const errors = validationResult(request);
+
+    if(!errors.isEmpty()) {
+        return response.status(422).json({
+            errors: errors.array()
+        });
+    }
+
+    return next();
+}

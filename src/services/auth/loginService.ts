@@ -29,7 +29,7 @@ export default class LoginService
             const token = sign(
                 { name: user.name, email: user.email },
                 process.env.JWT_SECRET!,
-                { subject: user.id, expiresIn: '30d' }
+                { subject: user.id, expiresIn: '1d' }
             );
 
             return {

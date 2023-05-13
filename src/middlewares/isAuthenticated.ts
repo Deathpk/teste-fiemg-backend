@@ -19,7 +19,8 @@ export function isAuthenticated(request: Request, response: Response, next: Next
 
     try {
         const { sub } = verify(token, process.env.JWT_SECRET!) as Payload;
-        request.user_id = sub;
+        request.userId = sub;
+        
         return next(); 
     } catch(err: any) {
         return response.status(401).json({
