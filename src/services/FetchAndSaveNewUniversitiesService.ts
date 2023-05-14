@@ -41,7 +41,7 @@ export default class FetchAndSaveNewUniversitiesService
                     data: {
                         name: result.name,
                         country: result.country,
-                        state_province: result.state_province ?? '',
+                        state_province: result.state_province ?? null,
                         alpha_two_code: result.alpha_two_code,
                         domains: JSON.stringify(result.domains),
                         web_pages: JSON.stringify(result.web_pages),

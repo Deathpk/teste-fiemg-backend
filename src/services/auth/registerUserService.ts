@@ -7,9 +7,8 @@ export interface CreateUserRequest {
     password: string
 }
 
-export default class CreateUserService
-{
-    
+export default class RegisterUserService
+{   
     async execute({ name, email, password }: CreateUserRequest): Promise<void> {
         
         const userAlreadyExists = await prismaClient.user.findFirst({

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { body, param, validationResult } from "express-validator";
+import { body, param } from "express-validator";
+import { validate } from "./baseValidator";
 
 export async function storeUniversityValidate(request: Request, response: Response, next: NextFunction) {
     const validations = [
@@ -31,21 +32,8 @@ export async function storeUniversityValidate(request: Request, response: Respon
 
         body("stateProvince")
         .escape()
-    ]
-
-    for (let validation of validations) {
-        await validation.run(request);
-    }
-
-    const errors = validationResult(request);
-
-    if(!errors.isEmpty()) {
-        return response.status(422).json({
-            errors: errors.array()
-        });
-    }
-
-    return next();
+    ];
+    validate(request, response, next, validations);
 }
 
 export async function updateUniversityValidate(request: Request, response: Response, next: NextFunction) {
@@ -67,19 +55,6 @@ export async function updateUniversityValidate(request: Request, response: Respo
         .escape()
         .notEmpty()
         .withMessage("O campo Domains é obrigatório.")
-    ]
-
-    for (let validation of validations) {
-        await validation.run(request);
-    }
-
-    const errors = validationResult(request);
-
-    if(!errors.isEmpty()) {
-        return response.status(422).json({
-            errors: errors.array()
-        });
-    }
-
-    return next();
+    ];
+    validate(request, response, next, validations);
 }
